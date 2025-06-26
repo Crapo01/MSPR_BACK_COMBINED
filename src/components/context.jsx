@@ -1,6 +1,6 @@
 import React from 'react'
 
 
-export const ConcertContext = React.createContext();
+export const Context = React.createContext();
   
   

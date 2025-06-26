@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Col, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ConcertContext } from "../components/context"
+import { Context } from "../components/context"
 import useLocalStorage from "../hooks/useLocalStorage";
 import {BASE_URL} from '../config/config.js';
+import ButtonNew from "./buttons/ButtonNew.jsx";
+import ButtonUpdate from "./buttons/ButtonUpdate.jsx";
+import ButtonDelete from "./buttons/ButtonDelete.jsx";
 
 function Concerts() {
-    const band = useContext(ConcertContext);
+    const band = useContext(Context);
     const [localDatas,setLocalDatas] = useLocalStorage("concerts")
     const [datas, setDatas] = useState(false);
     async function fetchWordPressData() {
@@ -37,7 +40,7 @@ function Concerts() {
                     {datas.map((item) => (
 
                         <Col className="col-12 col-md-6 col-lg-4 p-3 ">
-                            <div key={item.id} className={"p-3 border rounded shadow"}>
+                            <div key={item.id} className={"p-3 border rounded shadow relative"}>
                                 <h2> {item.acf.name}</h2>
                                 <img src={item.acf.image.url} alt={item.acf.image_alt_text} style={{ width: 100 + '%' }} />
                                 <div>le {item.acf.date} à {item.acf.time}</div>
@@ -56,7 +59,8 @@ function Concerts() {
                                         plus de details...
                                     </Button>
                                 </Link>
-
+                                <ButtonUpdate title="Update concert"></ButtonUpdate>
+                                <ButtonDelete title="Delete"></ButtonDelete>
                             </div>
                         </Col>
                     ))}
@@ -69,8 +73,9 @@ function Concerts() {
     return (
 
         <div className={"p-3 m-md-5 border rounded bg-light"}>
-            <div className="lightningBg border rounded">
+            <div className="lightningBg border rounded relative">
             <h1 className="sectionTitle text-center text-light p-3 fs-1 fw-bold">CONCERTS</h1>
+            <ButtonNew title="Add new concert"></ButtonNew>
             </div>
             
             <Bands />
