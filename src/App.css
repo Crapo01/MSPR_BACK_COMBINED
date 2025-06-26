@@ -73,6 +73,26 @@ p {
     right: 5px;
 }
 
+.btn-top-right-position{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.btn-bottom-right-position{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.btn-bottom-left-position{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+
+
 .sticky{
     position: sticky;
     top: 0px;

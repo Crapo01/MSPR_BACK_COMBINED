@@ -8,7 +8,7 @@ import Program from "./pages/Program"
 import Details from "./pages/Details"
 import { Container } from "react-bootstrap"
 import './App.css'
-import { ConcertContext } from "./components/context"
+import { Context } from "./components/context"
 import { useState } from "react"
 import Faq from "./pages/Faq"
 import Mentions from "./pages/Mentions"
@@ -19,11 +19,14 @@ import Concert from "./pages/Concert"
 function App() {
   
   const [band,setBand]= useState();
+  const [editor,setEditor]= useState(false);
   
   return (    
-    <ConcertContext.Provider value={{
+    <Context.Provider value={{
       updateBand: (newBand)=>setBand(newBand),
-      band: band
+      band: band,
+      updateEditor: (newEditor)=>setEditor(newEditor),
+      editor: editor,      
       }}>
        <Container >
       <Header></Header>
@@ -39,9 +42,9 @@ function App() {
         <Route path="/Mentions" element={<Mentions />} />       
       </Routes>
       </div>
-      <Footer></Footer>
+      <Footer></Footer>      
       </Container> 
-    </ConcertContext.Provider>
+    </Context.Provider>
   )
 }
 

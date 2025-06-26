@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ConcertContext } from "../components/context";
+import { Context } from "../components/context";
 import { Col, Row } from "react-bootstrap";
 
 
@@ -7,7 +7,7 @@ import { Col, Row } from "react-bootstrap";
 
 
 function Details() {
-    const concert = useContext(ConcertContext);
+    const concert = useContext(Context);
     //console.log(`concert:${JSON.stringify(concert)} with ${Object.keys(concert).length} keys`)
     //console.log(concert.band)
     if (concert.band!==undefined)  

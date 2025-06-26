@@ -4,9 +4,12 @@ import * as L from "leaflet";
 import { Button, Col, Row } from "react-bootstrap";
 import RoutingMachine from "./RoutingMachine";
 import { Link } from "react-router-dom";
-import { ConcertContext } from "./context";
+import { Context } from "./context";
 import useLocalStorage from "../hooks/useLocalStorage";
 import {BASE_URL} from '../config/config.js';
+import ButtonNew from "./buttons/ButtonNew.jsx";
+import ButtonUpdate from "./buttons/ButtonUpdate.jsx";
+import ButtonDelete from "./buttons/ButtonDelete.jsx";
 
 
 function Carte(props) {
@@ -43,7 +46,7 @@ function Carte(props) {
     });
 
 
-  const band = useContext(ConcertContext)
+  const band = useContext(Context)
   const [localDatas, setLocalDatas] = useLocalStorage("pointeurs")
   const [localConcerts, setLocalConcerts] = useLocalStorage("concerts")
   const [datas, setDatas] = useState([]);
@@ -183,8 +186,9 @@ function Carte(props) {
   return (
     <>
       <Row className="  m-md-5 p-2 border rounded bg-light">
-        <div className="lightningBg border rounded ">
+        <div className="lightningBg border rounded relative">
           <h1 className="sectionTitle text-center text-light p-3 fs-1 fw-bold">CARTE</h1>
+          <ButtonNew title="Add new pointer"></ButtonNew>
         </div>
         <Col className="d-flex justify-content-center">
           <div className="p-2">
@@ -228,13 +232,15 @@ function Carte(props) {
 
                     {<Marker position={[item.acf.lat, item.acf.lon]} icon={selectColor(item.acf.type)}>
                       <Tooltip>{item.acf.name} </Tooltip>
-                      <Popup>
+                      <Popup className="relative">
                         <h2>{item.acf.name}</h2>
                         <p>{item.acf.description}</p>
                         <a href={item.acf.link} target="_blank">{item.acf.link}</a>
                         <br></br>
                         {locator ?
                           <button onClick={() => setArrival([item.acf.lat, item.acf.lon])}>Y aller ...</button> : null}
+                      <ButtonUpdate title="update pointer"></ButtonUpdate>
+                      <ButtonDelete title="delete"></ButtonDelete>
                       </Popup>
                     </Marker>}
                   </li>
