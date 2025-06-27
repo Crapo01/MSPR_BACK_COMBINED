@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Image, Row } from "react-bootstrap";
-import ReactHtmlParser from 'react-html-parser';
+import {  Col, Image, Row } from "react-bootstrap";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { BASE_URL } from '../config/config.js';
 import ButtonNew from "./buttons/ButtonNew.jsx";
@@ -16,7 +15,7 @@ function Actu() {
     async function fetchWordPressData() {
         try {
             //const response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/actu");
-            const response = await fetch(`${BASE_URL}/wp-json/acf/v3/actu`);
+            const response = await fetch(`${BASE_URL}/api/informations/all`);
             const data = await response.json();
             //console.log(data)
             if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { sortDatas(data) };
@@ -40,7 +39,7 @@ function Actu() {
         const prioTemp = new Array;
         data.map((item) => (
 
-            item.acf.priority === "prioritaire" ? prioTemp.unshift(item) : normalTemp.push(item)
+            item.priority ? prioTemp.unshift(item) : normalTemp.push(item)
         ))
         setDatasNormal(normalTemp);
         setDatasPrio(prioTemp);
@@ -55,7 +54,7 @@ function Actu() {
 
                         {datasNormal.map((item) => (
                             <Col key={item.id} className={"p-3 col-12 col-lg-6"} >
-                                <div className={"p-3 border rounded shadow border-primary relative"}> {ReactHtmlParser(item.acf.textinfo)}
+                                <div className={"p-3 border rounded shadow border-primary relative"}> {item.message}
                                     <ButtonUpdate title="update info"></ButtonUpdate>
                                     <ButtonDelete title="delete"></ButtonDelete>
                                 </div>
@@ -77,7 +76,7 @@ function Actu() {
                         {datasPrio.map((item) => (
                             <Col key={item.id} className={"p-3 col-12 col-lg-6 "} >
 
-                                <div className={"p-3 border rounded shadow border-danger relative"}> {ReactHtmlParser(item.acf.textinfo)}
+                                <div className={"p-3 border rounded shadow border-danger relative"}> {item.message}
                                     <ButtonUpdate title="update info"></ButtonUpdate>
                                     <ButtonDelete title="delete"></ButtonDelete>
                                 </div>

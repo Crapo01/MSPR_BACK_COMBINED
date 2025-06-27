@@ -13,7 +13,7 @@ function CarteMini() {
   async function fetchWordPressData() {
     try {
         //const response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/pointeur");
-        const response = await fetch(`${BASE_URL}/wp-json/acf/v3/pointeur`);
+        const response = await fetch(`${BASE_URL}/api/pointeurs/all`);
         const data = await response.json();
         //console.log(data)
         if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data);setLocalDatas(data) };
@@ -56,8 +56,8 @@ useEffect(() => {
 
     <li key={item.id}>
 
-      {<Marker position={[item.acf.lat, item.acf.lon]} >
-        <Tooltip>{item.acf.name} </Tooltip>        
+      {<Marker position={[item.lat, item.lon]} >
+        <Tooltip>{item.name} </Tooltip>        
       </Marker>}
     </li>
   ))}

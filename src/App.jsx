@@ -3,7 +3,7 @@ import Header from "./components/Header"
 import Map from "./pages/Map"
 import Home from "./pages/Home"
 import Footer from "./components/Footer"
-import Partnair from "./pages/Partnair"
+import Partner from "./pages/Partner"
 import Program from "./pages/Program"
 import Details from "./pages/Details"
 import { Container } from "react-bootstrap"
@@ -34,7 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Map" element={<Map />} />
-        <Route path="/Partnair" element={<Partnair />} />
+        <Route path="/Partner" element={<Partner />} />
         <Route path="/Concert" element={<Concert />} />
         <Route path="/Program" element={<Program />} />
         <Route path="/Details" element={<Details />} />

@@ -23,7 +23,7 @@ function Header() {
               <Nav.Link> <Link to={"/Map"} style={{ textDecoration: 'none' }}><Button className='btn-light'>CARTE</Button></Link></Nav.Link>
               <Nav.Link> <Link to={"/Concert"} style={{ textDecoration: 'none' }}><Button className='btn-light'>CONCERTS</Button></Link></Nav.Link>
               <Nav.Link> <Link to={"/Program"} style={{ textDecoration: 'none' }}><Button className='btn-light'>PROGRAMME</Button></Link></Nav.Link>
-              <Nav.Link> <Link to={"/Partnair"} style={{ textDecoration: 'none' }}><Button className='btn-light'>PARTENAIRES</Button></Link></Nav.Link>
+              <Nav.Link> <Link to={"/Partner"} style={{ textDecoration: 'none' }}><Button className='btn-light'>PARTENAIRES</Button></Link></Nav.Link>
               <Nav.Link> <Link to={"/Faq"} style={{ textDecoration: 'none' }}><Button className='btn-light'>FAQ</Button></Link></Nav.Link>
               {/* <Nav.Link target="_blank"  href="https://nationsoundluc.rf.gd/wp/boutique/"><Button className='btn-light'>BOUTIQUE</Button></Nav.Link>   */}
               <Nav.Link target="_blank" href={`${BASE_URL}/boutique/`}><Button className='btn-light'>BOUTIQUE</Button></Nav.Link>

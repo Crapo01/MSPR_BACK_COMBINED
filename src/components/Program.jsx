@@ -6,23 +6,21 @@ import {BASE_URL} from '../config/config.js';
 function Program() {
     const [localDatas, setLocalDatas] = useLocalStorage("programmation")
     const [datas, setDatas] = useState([]);
-    const [filterDay, setFilterDay] = useState("tout");
-    const [filterType, setFilterType] = useState("tout");
+    const [filterDay, setFilterDay] = useState("tout");    
     const [filterHour, setFilterHour] = useState("tout");
     const [filterScene, setFilterScene] = useState("tout");
 
     const filteredEvents = datas.filter
         ((event) =>
-            (event.acf.date === filterDay || filterDay === "tout") &&
-            (event.acf.type === filterType || filterType === "tout") &&
-            (event.acf.time.slice(0, 2) >= filterHour || filterHour === "tout") &&
-            (event.acf.scene === filterScene || filterScene === "tout")
+            (event.date === filterDay || filterDay === "tout") &&            
+            (event.time.slice(0, 2) >= filterHour || filterHour === "tout") &&
+            (event.scene === filterScene || filterScene === "tout")
         )
 
     async function fetchWordPressData() {
         try {
             //const response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/programmation");
-            const response = await fetch(`${BASE_URL}/wp-json/acf/v3/programmation`);
+            const response = await fetch(`${BASE_URL}/api/concerts/all`);
             const data = await response.json();
             //console.log(data)
             if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data); setLocalDatas(data) };
@@ -65,15 +63,7 @@ function Program() {
                                     <option value={"20"}>à partir de 20h</option>
                                     <option value={"21"}>à partir de 21h</option>
                                 </select>
-                            </Col>
-                            <Col>
-                                <div className="text-style4">Type</div>
-                                <select onChange={(e) => setFilterType(e.target.value)} value={filterType} style={{ width: 150 + 'px' }}>
-                                    <option value={"tout"}>tout</option>
-                                    <option value={"concert"}>les concerts</option>
-                                    <option value={"rencontre"}>les rencontres</option>
-                                </select>
-                            </Col>
+                            </Col>                            
                             <Col>
                                 <div className="text-style4">Scene</div>
                                 <select onChange={(e) => setFilterScene(e.target.value)} value={filterScene} style={{ width: 150 + 'px' }}>
@@ -94,9 +84,9 @@ function Program() {
                                     <Col className="col-md-6 col-lg-4" key={item.id} >
                                         <div className={"m-3"}>
                                             <div className={"p-2 border border-success rounded card shadow"} >
-                                                <h2 className="card-title"> {item.acf.name}</h2>
-                                                <div>le {item.acf.date} à {item.acf.time}</div>
-                                                <div>Scène: {item.acf.scene}</div>
+                                                <h2 className="card-title"> {item.name}</h2>
+                                                <div>le {item.date} à {item.time}</div>
+                                                <div>Scène: {item.scene}</div>
                                             </div>
                                         </div>
                                     </Col>

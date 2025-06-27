@@ -61,7 +61,7 @@ function Carte(props) {
   const filteredMarkers = datas.filter
     ((event) =>
     (
-      (event.acf.type === filter || filter === "tout")
+      (event.type === filter || filter === "tout")
     )
     )
 
@@ -82,12 +82,12 @@ function Carte(props) {
     //console.log(datas,filteredScenes)
     try {
       //let response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/pointeur");
-      let response = await fetch(`${BASE_URL}/wp-json/acf/v3/pointeur`);
+      let response = await fetch(`${BASE_URL}/api/pointeurs/all`);
       let data = await response.json();
       //console.log("data1:"+data)
       if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data); setLocalDatas(data) };
       //response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/concerts");
-      response = await fetch(`${BASE_URL}/wp-json/acf/v3/concerts`);
+      response = await fetch(`${BASE_URL}/api/concerts/all`);
       data = await response.json();
       //console.log("data2")
       //console.log(data)
@@ -109,9 +109,9 @@ function Carte(props) {
 
     let filteredProg = prog.filter((e) =>
     (
-      parseInt(new Date().toLocaleTimeString().substr(0, 2)) <= parseInt(e.acf.time.substr(0, 2) + 2) &&
-      parseInt(new Date().toLocaleTimeString().substr(0, 2)) >= parseInt(e.acf.time.substr(0, 2)) &&
-      parseInt(e.acf.date) === parseInt(new Date().toLocaleDateString())
+      parseInt(new Date().toLocaleTimeString().substr(0, 2)) <= parseInt(e.time.substr(0, 2) + 2) &&
+      parseInt(new Date().toLocaleTimeString().substr(0, 2)) >= parseInt(e.time.substr(0, 2)) &&
+      parseInt(e.date) === parseInt(new Date().toLocaleDateString())
 
     )
     )
@@ -120,12 +120,12 @@ function Carte(props) {
     //console.log("filteredProg")
     //console.log(datas)
     filteredProg.map((e) => (datas.map((ee) => {
-      const str = ee.acf.name;
-      //console.log(e.acf.scene+":"+str.substr(6));
-      //console.log(parseInt(e.acf.time.substr(0,2))+2)
+      const str = ee.name;
+      //console.log(e.scene+":"+str.substr(6));
+      //console.log(parseInt(e.time.substr(0,2))+2)
       //console.log(parseInt(new Date().toLocaleTimeString().substr(0,2)))
 
-      if (e.acf.scene === str.substr(6)) temp.push({ prog: e, mark: ee })
+      if (e.scene === str.substr(6)) temp.push({ prog: e, mark: ee })
     }
     )))
     //console.log(temp)
@@ -230,15 +230,15 @@ function Carte(props) {
 
                   <li key={item.id}>
 
-                    {<Marker position={[item.acf.lat, item.acf.lon]} icon={selectColor(item.acf.type)}>
-                      <Tooltip>{item.acf.name} </Tooltip>
+                    {<Marker position={[item.lat, item.lon]} icon={selectColor(item.type)}>
+                      <Tooltip>{item.name} </Tooltip>
                       <Popup className="relative">
-                        <h2>{item.acf.name}</h2>
-                        <p>{item.acf.description}</p>
-                        <a href={item.acf.link} target="_blank">{item.acf.link}</a>
+                        <h2>{item.name}</h2>
+                        <p>{item.description}</p>
+                        <a href={item.link} target="_blank">{item.link}</a>
                         <br></br>
                         {locator ?
-                          <button onClick={() => setArrival([item.acf.lat, item.acf.lon])}>Y aller ...</button> : null}
+                          <button onClick={() => setArrival([item.lat, item.lon])}>Y aller ...</button> : null}
                       <ButtonUpdate title="update pointer"></ButtonUpdate>
                       <ButtonDelete title="delete"></ButtonDelete>
                       </Popup>
@@ -256,27 +256,27 @@ function Carte(props) {
 
                   <li key={item.mark.id}>
 
-                    {<Marker position={[item.mark.acf.lat, item.mark.acf.lon]} icon={selectColor(item.mark.acf.type)}>
+                    {<Marker position={[item.mark.lat, item.mark.lon]} icon={selectColor(item.mark.type)}>
                       <Popup>
-                        <h2>{item.mark.acf.name}</h2>
-                        <h6>En cours: {item.prog.acf.name}</h6>
+                        <h2>{item.mark.name}</h2>
+                        <h6>En cours: {item.prog.name}</h6>
                         <Link to={"/Details"} style={{ textDecoration: 'none' }} >
                           <Button className='btn-dark my-2'
                             onClick={() => (band.updateBand({ 
-                                            name: item.prog.acf.name,
-                                            image: item.prog.acf.image.url,
-                                            image_alt_text: item.prog.acf.image_alt_text,
-                                            description: item.prog.acf.description,
-                                            origin: item.prog.acf.origin,
-                                            program: {date: item.prog.acf.date,time: item.prog.acf.time},
-                                            scene: item.prog.acf.scene
+                                            name: item.prog.name,
+                                            image: item.prog.image.url,
+                                            image_alt_text: item.prog.image_alt_text,
+                                            description: item.prog.description,
+                                            origin: item.prog.origin,
+                                            program: {date: item.prog.date,time: item.prog.time},
+                                            scene: item.prog.scene
                                             }))}>
                             plus de details...
                           </Button>
                         </Link>
                         <br />
                         {locator ?
-                          <Button className='btn-dark my-2' onClick={() => setArrival([item.mark.acf.lat, item.mark.acf.lon])}>Y aller ...</Button> : null}
+                          <Button className='btn-dark my-2' onClick={() => setArrival([item.mark.lat, item.mark.lon])}>Y aller ...</Button> : null}
                       </Popup>
                     </Marker>}
                   </li>
