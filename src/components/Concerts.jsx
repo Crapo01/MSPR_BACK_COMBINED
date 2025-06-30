@@ -15,7 +15,7 @@ function Concerts() {
     async function fetchWordPressData() {
         try {
             //const response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/concerts");  
-            const response = await fetch(`${BASE_URL}/wp-json/acf/v3/concerts`);          
+            const response = await fetch(`${BASE_URL}/api/concerts/all`);          
             const data = await response.json();
             console.log(data)
             if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data);setLocalDatas(data) };
@@ -41,20 +41,20 @@ function Concerts() {
 
                         <Col className="col-12 col-md-6 col-lg-4 p-3 ">
                             <div key={item.id} className={"p-3 border rounded shadow relative"}>
-                                <h2> {item.acf.name}</h2>
-                                <img src={item.acf.image.url} alt={item.acf.image_alt_text} style={{ width: 100 + '%' }} />
-                                <div>le {item.acf.date} à {item.acf.time}</div>
-                                        <div>Scène: {item.acf.scene}</div>                                                               
+                                <h2> {item.name}</h2>
+                                <img src={item.image} alt={item.image_alt_text} style={{ width: 100 + '%' }} />
+                                <div>le {item.date} à {item.time}</div>
+                                        <div>Scène: {item.scene}</div>                                                               
                                 <Link to={"/Details"} style={{ textDecoration: 'none' }} >
                                     <Button className='btn-dark m-4'
                                         onClick={() => (band.updateBand({ 
-                                            name: item.acf.name,
-                                            image: item.acf.image.url,
-                                            image_alt_text: item.acf.image_alt_text,
-                                            description: item.acf.description,
-                                            origin: item.acf.origin,
-                                            program: {date: item.acf.date,time: item.acf.time},
-                                            scene: item.acf.scene
+                                            name: item.name,
+                                            image: item.image.url,
+                                            image_alt_text: item.image_alt_text,
+                                            description: item.description,
+                                            origin: item.origin,
+                                            program: {date: item.date,time: item.time},
+                                            scene: item.scene
                                             }))}>
                                         plus de details...
                                     </Button>

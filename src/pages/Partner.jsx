@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 
 
-function Partnair() {
+function Partner() {
 
 
 
@@ -78,4 +78,4 @@ function Partnair() {
     );
 };
 
-export default Partnair;
+export default Partner;
