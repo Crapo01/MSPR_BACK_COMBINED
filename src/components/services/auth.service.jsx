@@ -1,5 +1,5 @@
 import axios from "axios";
-import {BASE_URL} from '../config/config.js';
+import { BASE_URL } from "../../config/config";
 
 const API_URL = `${BASE_URL}/api/auth/`;
 
