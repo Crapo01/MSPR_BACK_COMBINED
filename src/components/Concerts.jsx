@@ -75,7 +75,7 @@ function Concerts() {
         <div className={"p-3 m-md-5 border rounded bg-light"}>
             <div className="lightningBg border rounded relative">
             <h1 className="sectionTitle text-center text-light p-3 fs-1 fw-bold">CONCERTS</h1>
-            <ButtonNew title="Add new concert"></ButtonNew>
+            <ButtonNew target="Concert"></ButtonNew>
             </div>
             
             <Bands />
