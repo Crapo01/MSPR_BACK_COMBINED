@@ -10,7 +10,7 @@ function ButtonDelete({id,target}) {
         console.log(i);
 
         if (window.confirm("Confirmez-vous vouloir effacer?")) {
-            userService.deleteInfo(i).then(response => {
+            userService['delete'+target](i).then(response => {
                 if (response.data.code !== "rest_no_route") {                    
                     window.location.reload();
                 }
