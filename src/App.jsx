@@ -20,6 +20,7 @@ import { StompSessionProvider, useStompClient, useSubscription } from "react-sto
 import { toast, ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import {BASE_URL} from '././config/config.js';
+import EditingRights from "./components/EditingRights.jsx"
 
 
 
@@ -78,6 +79,7 @@ function App() {
           theme="colored"
         />
         <Header></Header>
+        <EditingRights></EditingRights>
         <StompSessionProvider
           url={`${BASE_URL}/ws-endpoint`}>
           <PushNotification />

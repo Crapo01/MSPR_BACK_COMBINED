@@ -54,9 +54,9 @@ function Actu() {
 
                         {datasNormal.map((item) => (
                             <Col key={item.id} className={"p-3 col-12 col-lg-6"} >
-                                <div className={"p-3 border rounded shadow border-primary relative"}> {item.message}
-                                    <ButtonUpdate title="update info"></ButtonUpdate>
-                                    <ButtonDelete title="delete"></ButtonDelete>
+                                <div className={"px-3 py-4 border rounded shadow border-primary relative"}> {item.message}
+                                    <ButtonUpdate target="Info" item={item}></ButtonUpdate>
+                                    <ButtonDelete id={item.id} target="Info"></ButtonDelete>
                                 </div>
                             </Col>
                         ))}
@@ -76,9 +76,9 @@ function Actu() {
                         {datasPrio.map((item) => (
                             <Col key={item.id} className={"p-3 col-12 col-lg-6 "} >
 
-                                <div className={"p-3 border rounded shadow border-danger relative"}> {item.message}
-                                    <ButtonUpdate title="update info"></ButtonUpdate>
-                                    <ButtonDelete title="delete"></ButtonDelete>
+                                <div className={"px-3 py-4 border rounded shadow border-danger relative"}> {item.message}
+                                    <ButtonUpdate target="Info" item={item}></ButtonUpdate>
+                                    <ButtonDelete id={item.id} target="Info" ></ButtonDelete>
                                 </div>
 
 
@@ -98,7 +98,7 @@ function Actu() {
         <div className={"p-3 m-md-5 border rounded bg-light"}>
             <div className="lightningBg border rounded relative">
                 <h1 className="sectionTitle text-center text-light p-3 fs-1 fw-bold">INFORMATIONS</h1>
-                <ButtonNew title="Add new info"></ButtonNew>
+                <ButtonNew target="Info"></ButtonNew>
                 <ButtonPushNotification title="Send push notification"></ButtonPushNotification>
             </div>
 

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-import {BASE_URL} from '../config/config.js';
+import {BASE_URL} from '../../config/config';
 
 const API_TEST_URL =    `${BASE_URL}/api/access/`;
-const API_INFO_URL = `${BASE_URL}/informations/`;
+const API_INFO_URL = `${BASE_URL}/api/informations/`;
 const API_CONCERT_URL = `${BASE_URL}/api/concerts/`;
 const API_POINTEUR_URL = `${BASE_URL}/pointeurs/`;
 const API_AUTH_URL = `${BASE_URL}/api/auth/`;
