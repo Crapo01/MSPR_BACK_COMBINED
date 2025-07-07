@@ -17,7 +17,7 @@ function Concerts() {
             //const response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/concerts");  
             const response = await fetch(`${BASE_URL}/api/concerts/all`);          
             const data = await response.json();
-            console.log(data)
+            // console.log(data)
             if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data);setLocalDatas(data) };
 
         } catch (error) {
@@ -49,7 +49,7 @@ function Concerts() {
                                     <Button className='btn-dark m-4'
                                         onClick={() => (band.updateBand({ 
                                             name: item.name,
-                                            image: item.image.url,
+                                            image: item.image,
                                             image_alt_text: item.image_alt_text,
                                             description: item.description,
                                             origin: item.origin,
@@ -59,8 +59,8 @@ function Concerts() {
                                         plus de details...
                                     </Button>
                                 </Link>
-                                <ButtonUpdate title="Update concert"></ButtonUpdate>
-                                <ButtonDelete title="Delete"></ButtonDelete>
+                                <ButtonUpdate target="Concert" item={item}></ButtonUpdate>
+                                <ButtonDelete target="Concert" id={item.id}></ButtonDelete>
                             </div>
                         </Col>
                     ))}
