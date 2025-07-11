@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Image, Row } from "react-bootstrap";
-import ReactHtmlParser from 'react-html-parser';
+import {  Col, Image, Row } from "react-bootstrap";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { BASE_URL } from '../config/config.js';
 import ButtonNew from "./buttons/ButtonNew.jsx";
@@ -16,7 +15,7 @@ function Actu() {
     async function fetchWordPressData() {
         try {
             //const response = await fetch("https://nationsoundluc.rf.gd/wp/wp-json/acf/v3/actu");
-            const response = await fetch(`${BASE_URL}/wp-json/acf/v3/actu`);
+            const response = await fetch(`${BASE_URL}/api/informations/all`);
             const data = await response.json();
             //console.log(data)
             if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { sortDatas(data) };
@@ -40,7 +39,7 @@ function Actu() {
         const prioTemp = new Array;
         data.map((item) => (
 
-            item.acf.priority === "prioritaire" ? prioTemp.unshift(item) : normalTemp.push(item)
+            item.priority ? prioTemp.unshift(item) : normalTemp.push(item)
         ))
         setDatasNormal(normalTemp);
         setDatasPrio(prioTemp);
@@ -55,9 +54,9 @@ function Actu() {
 
                         {datasNormal.map((item) => (
                             <Col key={item.id} className={"p-3 col-12 col-lg-6"} >
-                                <div className={"p-3 border rounded shadow border-primary relative"}> {ReactHtmlParser(item.acf.textinfo)}
-                                    <ButtonUpdate title="update info"></ButtonUpdate>
-                                    <ButtonDelete title="delete"></ButtonDelete>
+                                <div className={"px-3 py-4 border rounded shadow border-primary relative"}> {item.message}
+                                    <ButtonUpdate target="Info" item={item}></ButtonUpdate>
+                                    <ButtonDelete id={item.id} target="Info"></ButtonDelete>
                                 </div>
                             </Col>
                         ))}
@@ -77,9 +76,9 @@ function Actu() {
                         {datasPrio.map((item) => (
                             <Col key={item.id} className={"p-3 col-12 col-lg-6 "} >
 
-                                <div className={"p-3 border rounded shadow border-danger relative"}> {ReactHtmlParser(item.acf.textinfo)}
-                                    <ButtonUpdate title="update info"></ButtonUpdate>
-                                    <ButtonDelete title="delete"></ButtonDelete>
+                                <div className={"px-3 py-4 border rounded shadow border-danger relative"}> {item.message}
+                                    <ButtonUpdate target="Info" item={item}></ButtonUpdate>
+                                    <ButtonDelete id={item.id} target="Info" ></ButtonDelete>
                                 </div>
 
 
@@ -99,7 +98,7 @@ function Actu() {
         <div className={"p-3 m-md-5 border rounded bg-light"}>
             <div className="lightningBg border rounded relative">
                 <h1 className="sectionTitle text-center text-light p-3 fs-1 fw-bold">INFORMATIONS</h1>
-                <ButtonNew title="Add new info"></ButtonNew>
+                <ButtonNew target="Info"></ButtonNew>
                 <ButtonPushNotification title="Send push notification"></ButtonPushNotification>
             </div>
 

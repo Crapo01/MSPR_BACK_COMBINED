@@ -9,7 +9,7 @@ import { Col, Row } from "react-bootstrap";
 function Details() {
     const concert = useContext(Context);
     //console.log(`concert:${JSON.stringify(concert)} with ${Object.keys(concert).length} keys`)
-    //console.log(concert.band)
+    console.log(concert.band)
     if (concert.band!==undefined)  
     return (
         <Row className={"p-3 border rounded shadow bg-light mb-5 mx-1"}>
