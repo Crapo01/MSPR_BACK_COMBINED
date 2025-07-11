@@ -21,6 +21,7 @@ import { toast, ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import {BASE_URL} from '././config/config.js';
 import EditingRights from "./components/EditingRights.jsx"
+import Admin from "./pages/Admin.jsx"
 
 
 
@@ -93,6 +94,7 @@ function App() {
             <Route path="/Details" element={<Details />} />
             <Route path="/Faq" element={<Faq />} />
             <Route path="/Mentions" element={<Mentions />} />
+            <Route path="/Admin" element={<Admin/>} />
             <Route path="/security/login" element={<LoginComponent />} />
             <Route path="/security/register" element={<Register />} />
             <Route path="/security/profile" element={<Profile />} />

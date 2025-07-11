@@ -8,6 +8,7 @@ function ButtonDelete({id,target}) {
     
     async function handleDelete(i) {
         console.log(i);
+        console.log(target);
 
         if (window.confirm("Confirmez-vous vouloir effacer?")) {
             userService['delete'+target](i).then(response => {
