@@ -188,7 +188,7 @@ function Carte(props) {
       <Row className="  m-md-5 p-2 border rounded bg-light">
         <div className="lightningBg border rounded relative">
           <h1 className="sectionTitle text-center text-light p-3 fs-1 fw-bold">CARTE</h1>
-          <ButtonNew title="Add new pointer"></ButtonNew>
+          <ButtonNew target="Pointer"></ButtonNew>
         </div>
         <Col className="d-flex justify-content-center">
           <div className="p-2">
@@ -239,8 +239,8 @@ function Carte(props) {
                         <br></br>
                         {locator ?
                           <button onClick={() => setArrival([item.lat, item.lon])}>Y aller ...</button> : null}
-                      <ButtonUpdate title="update pointer"></ButtonUpdate>
-                      <ButtonDelete title="delete"></ButtonDelete>
+                      <ButtonUpdate target="Pointer" item={item}></ButtonUpdate>
+                      <ButtonDelete target="Pointer" id={item.id}></ButtonDelete>
                       </Popup>
                     </Marker>}
                   </li>

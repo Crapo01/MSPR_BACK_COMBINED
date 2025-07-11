@@ -149,6 +149,73 @@ function ButtonUpdate(props) {
         }
         return null
     }
+
+function PointerModal() {
+        if (props.target === "Pointer") {
+            return (
+                <>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>"Modifier un pointeur"</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Formik initialValues={initialValues} enableReinitialize>
+                                {(props) => (
+                                    <Form>
+                                        <div className="d-flex flex-column">
+                                            <div className="d-flex flex-column flex-md-row">
+                                                {/* Champ caché pour l'id */}
+                                                <Field type="hidden" id="id" name="id" value={props.values.id} />
+                                                <div className="d-flex flex-column mx-1">
+                                                    <label>Type</label>
+                                                    <Field name="type" as="select" className="type">
+                                                        <option value="scene">scene</option>
+                                                        <option value="alimentation">alimentation</option>
+                                                        <option value="informations">informations</option>
+                                                        <option value="toilettes">toilettes</option>
+                                                    </Field>
+                                                </div>
+                                            </div>
+                                            <div className="d-flex flex-column flex-md-row">
+                                                <div className="d-flex flex-column mx-1">
+                                                    <label htmlFor="lon">Longitude</label>
+                                                    <Field type="number" step="0.0001" id="lon" name="lon" placeholder="longitude" value={props.values.lon} />
+                                                </div>
+                                                <div className="d-flex flex-column mx-1">
+                                                    <label htmlFor="lat">Latitude</label>
+                                                    <Field type="number" step="0.0001" id="lat" name="lat" placeholder="latitude" value={props.values.lat} />
+                                                </div>
+                                            </div>
+                                            <div className="d-flex flex-column">
+                                                <label htmlFor="description">Description du pointeur</label>
+                                                <Field id="description" name="description" placeholder="description" className="my-3" />
+                                            </div>
+                                            <div className="d-flex flex-column">
+                                                <label htmlFor="link">Lien externe</label>
+                                                <Field id="link" name="link" placeholder="lien" className="my-3" />
+                                            </div>
+                                            <div className="d-flex flex-column">
+                                                <label htmlFor="name">Nom du pointeur</label>
+                                                <Field id="name" name="name" placeholder="nom du pointeur" className="my-2" required />
+                                            </div>
+                                        </div>
+                                        <div className="d-flex justify-content-end">
+                                            <Button className="btn-warning border btn-sm" onClick={() => handleUpdate(props.values)}>
+                                                Update
+                                            </Button>
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
+                        </Modal.Body>
+                    </Modal>
+                </>
+            );
+        }
+        return null
+    }
+
+
 function UserModal(){
             if (props.target === "User"){
                 return (
@@ -201,6 +268,7 @@ function UserModal(){
                 <ConcertModal/>
                 <InfoModal/>
                 <UserModal/>
+                <PointerModal/>
             </>
         );
     };

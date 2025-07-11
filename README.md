@@ -38,4 +38,14 @@ pour installer toutes les dependances:
 
     "react-router-dom": "^6.23.1"
   },
+
+  # LANCEMENT DU SERVER LOCAL
+
+  npm run dev
+
+  # LANCEMENT DU BUILD POUR DEPLOIEMENT
+
+  npm run build
+
+  le build est dans le dossier: dist
   
