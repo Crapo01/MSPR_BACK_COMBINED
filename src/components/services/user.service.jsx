@@ -5,7 +5,7 @@ import {BASE_URL} from '../../config/config';
 const API_TEST_URL =    `${BASE_URL}/api/access/`;
 const API_INFO_URL = `${BASE_URL}/api/informations/`;
 const API_CONCERT_URL = `${BASE_URL}/api/concerts/`;
-const API_POINTEUR_URL = `${BASE_URL}/pointeurs/`;
+const API_POINTER_URL = `${BASE_URL}/api/pointeurs/`;
 const API_AUTH_URL = `${BASE_URL}/api/auth/`;
 
 class UserService {
@@ -50,25 +50,25 @@ class UserService {
   
 ////////////////////////////////////////////////////////////////////// pointeur section
 
-  getPointeur() {
+  getPointer() {
     return axios.get(API_POINTEUR_URL + 'all', { headers: authHeader() });
   }
   
-  createPointeur(data){
+  createPointer(data){
     //console.log("service create",data)
     //console.log(authHeader())
-    return axios.post(API_POINTEUR_URL,data, { headers: authHeader() });
+    return axios.post(API_POINTER_URL,data, { headers: authHeader() });
   }
   
-  updatePointeur(data,id){
+  updatePointer(data,id){
     //console.log("service create",data)
     //console.log(authHeader())
-    return axios.put(API_POINTEUR_URL+'update/'+id,data, { headers: authHeader() });
+    return axios.put(API_POINTER_URL+'update/'+id,data, { headers: authHeader() });
   }
   
-  deletePointeur(id){
+  deletePointer(id){
     //console.log("service delete",id)
-    return axios.delete(API_POINTEUR_URL + id, { headers: authHeader() });
+    return axios.delete(API_POINTER_URL + id, { headers: authHeader() });
   }
   
 /////////////////////////////////////////////////////////////////////////// info section
