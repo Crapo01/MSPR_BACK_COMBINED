@@ -31,7 +31,7 @@ function EditingRights() {
           <input className="form-check-input m-3" type="checkbox" id="flexSwitchCheckDefault" onClick={() => (toggleEditorMode.updateEditor(!toggleEditorMode.editor))} />
         </div>
         <p className="text-light mx-5 my-2"> Logged in as editor or admin</p>
-        <Link to={"#"} style={{ textDecoration: 'none' }}><ButtonAdminPanel title="Admin panel"></ButtonAdminPanel></Link>
+        <Link to={"/Admin"} style={{ textDecoration: 'none' }}><ButtonAdminPanel title="Admin panel"></ButtonAdminPanel></Link>
       </div>
       </section>
       

@@ -149,7 +149,38 @@ function ButtonUpdate(props) {
         }
         return null
     }
-
+function UserModal(){
+            if (props.target === "User"){
+                return (
+                    <>                
+    
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>"Mettre à jour une information"</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Formik initialValues={initialValues} enableReinitialize>
+                            {props => (
+                                <Form>                                    
+                                         <label className="my-3">ROLE</label>
+                                                    <Field name="role" as="select" multiple>
+                                                        <option value="admin">admin</option>
+                                                        <option value="editor">editor</option>
+                                                        <option value="viewer">viewer</option>
+                                                    </Field>
+                                    <div className='d-flex justify-content-end'>
+                                        <Button className='btn-success border btn-sm' onClick={() => handleUpdate(props.values)}>Mettre à jour</Button>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
+                    </Modal.Body>
+                </Modal>
+            </>
+                );
+            }
+            return null
+        }
     
         async function handleUpdate(values) {
             console.log(values);
@@ -169,6 +200,7 @@ function ButtonUpdate(props) {
     
                 <ConcertModal/>
                 <InfoModal/>
+                <UserModal/>
             </>
         );
     };
